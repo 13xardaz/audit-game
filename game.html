@@ -4,11 +4,51 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Игра</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    #game-container {
+      margin-top: 20px;
+    }
+    .resource {
+      margin-bottom: 10px;
+    }
+    .card {
+      padding: 15px;
+      margin: 10px;
+      border: 1px solid #ddd;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <h1>Игра</h1>
-  <p>Здесь будет интерфейс.</p>
+  <h1>Игра: Бизнес-симуляция</h1>
+
+  <div id="resources">
+    <div class="resource">Время: <span id="T_resource">100</span></div>
+    <div class="resource">Бюджет: <span id="B_resource">100</span></div>
+    <div class="resource">Команда: <span id="C_resource">100</span></div>
+    <div class="resource">Риски: <span id="R_resource">100</span></div>
+  </div>
+
+  <div id="game-container">
+    <h2>Карточки</h2>
+    <div class="card" id="card_1">
+      <h3>Карточка 1</h3>
+      <p>Сделать что-то важное</p>
+      <button id="card_1_button">Выбрать</button>
+    </div>
+    <div class="card" id="card_2">
+      <h3>Карточка 2</h3>
+      <p>Сделать что-то ещё важное</p>
+      <button id="card_2_button">Выбрать</button>
+    </div>
+  </div>
+
   <p><a href="index.html">Назад</a></p>
+
   <script src="game.js"></script>
 </body>
 </html>
