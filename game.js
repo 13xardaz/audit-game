@@ -29,18 +29,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Функция отправки данных на сервер
     async function sendEvent(eventData) {
-        await fetch(API_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(eventData)
-        });
+        try {
+            const response = await fetch(API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(eventData)
+            });
+
+            const result = await response.json();
+            console.log("Response received: ", result);
+            return result;
+        } catch (error) {
+            console.error("Error during fetch request: ", error);
+        }
     }
 
     // Функция для выбора карточки и расчёта новых ресурсов
     function selectCard(card) {
-        // Подсчитываем стоимости
         const T_cost = card.base.T + mods.T;
         const B_cost = card.base.B + mods.B;
         const C_cost = card.base.C + mods.C;
@@ -70,10 +77,12 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         // Отправляем данные на сервер
-        sendEvent(event);
-
-        // Обновляем экран игры
-        updateGameScreen();
+        sendEvent(event).then(response => {
+            console.log("Event sent successfully:", response);
+            updateGameScreen();
+        }).catch(error => {
+            console.error("Failed to send event:", error);
+        });
     }
 
     // Пример карточки
