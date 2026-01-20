@@ -103,11 +103,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Пример того, как вызывается выбор карточки
+    // Проверяем, что кнопка существует, перед добавлением обработчика события
     const card1Button = document.getElementById("card_1_button");
     if (card1Button) {
         card1Button.addEventListener("click", function () {
             selectCard(exampleCard);
         });
+    } else {
+        console.error('Button with id "card_1_button" not found!');
     }
 });
